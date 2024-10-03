@@ -3,6 +3,9 @@ const app = express()
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
+const mongoose = require('mongoose')
+const url = process.env.MONGODB_URI
+mongoose.connect(url)
 
 const requestLogger = (request, response, next) => {
     console.log('Method:', request.method)
@@ -13,6 +16,16 @@ const requestLogger = (request, response, next) => {
 }
 
 app.use(requestLogger)
+
+const reportSchema = new mongoose.Schema({
+    reportName: String,
+    addressLot: String,
+    jobType: String,
+    urgencyLevel: String,
+    notes: String
+})
+
+const Report = mongoose.model('Report', reportSchema)
 
 let reports = [
     {
@@ -46,7 +59,9 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api/reports', (request, response) => {
-    response.json(reports)
+    Report.find({}).then(reports => {
+        response.json(reports)
+    })
 })
 
 app.get('/api/reports/:id', (request, response) => {
