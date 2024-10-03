@@ -1,0 +1,7 @@
+post http://localhost:3001/api/login
+Content-Type: application/json
+
+{
+    "username": "sinay123@mymail.unisa.edu.au",
+    "password": "Ranger_123"
+}
