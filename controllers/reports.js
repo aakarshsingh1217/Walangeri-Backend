@@ -46,6 +46,7 @@ reportsRouter.post('/', async (request, response, next) => {
     }
 
     const report = new Report({
+        image: body.image,
         reportName: body.reportName,
         addressLot: body.addressLot,
         jobType: body.jobType,

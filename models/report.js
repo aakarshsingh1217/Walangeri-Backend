@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const reportSchema = new mongoose.Schema({
+    image: String,
     reportName: String,
     addressLot: String,
     jobType: String,
