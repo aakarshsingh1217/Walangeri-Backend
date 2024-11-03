@@ -74,6 +74,7 @@ reportsRouter.put('/:id', (request, response, next) => {
     const body = request.body
 
     const report = {
+        image: body.image,
         reportName: body.reportName,
         addressLot: body.addressLot,
         jobType: body.jobType,
